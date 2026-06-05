@@ -1,29 +1,38 @@
-INSERT INTO university VALUES
-(1, 'Mumbai University', 'Mumbai'),
-(2, 'Pune University', 'Pune');
+CREATE database Universitydb;
+USE Universitydb;
 
-INSERT INTO student VALUES
-(25, 'Disha', 'Ram Nagar', 1),
-(34, 'Alisha', 'Shivaji Nagar', 1),
-(26, 'Karan', 'Mumbai', 1),
-(27, 'Rahul', 'Pune', 2),
-(28, 'Aman', 'Mumbai', 1);
+CREATE TABLE university (
+    UID INT PRIMARY KEY,
+    NAME VARCHAR(50),
+    Address VARCHAR(100)
+);
 
-INSERT INTO faculty VALUES
-(1234, 'Harsha', 'Lonere', 'DBMS'),
-(1235, 'Kareena', 'Goregaon', 'Physics'),
-(1236, 'Meena', 'Pune', 'Maths'),
-(1237, 'Riya', 'Mumbai', 'DBMS');
+CREATE TABLE student (
+    PRN INT PRIMARY KEY,
+    NAME VARCHAR(50),
+    Address VARCHAR(100),
+    UID INT,
+    FOREIGN KEY (UID) REFERENCES university(UID)
+);
 
-INSERT INTO course (course_name, faculty_id, subject) VALUES
-('Database Systems', 1234, 'DBMS'),
-('Mechanics', 1235, 'Physics'),
-('Algebra', 1236, 'Maths'),
-('Advanced DBMS', 1237, 'DBMS');
+CREATE TABLE faculty (
+    faculty_id INT PRIMARY KEY,
+    NAME VARCHAR(50),
+    Address VARCHAR(100),
+    subject VARCHAR(50)
+);
 
-INSERT INTO instructor VALUES
-(10211, 'A', 'Biology', 66000),
-(10212, 'B', 'Physics', 50000),
-(10213, 'C', 'Biology', 72000),
-(10214, 'D', 'Maths', 48000);
+CREATE TABLE course (
+    course_id INT PRIMARY KEY AUTO_INCREMENT,
+    course_name VARCHAR(100),
+    faculty_id INT,
+    subject VARCHAR(50),
+    FOREIGN KEY (faculty_id) REFERENCES faculty(faculty_id)
+);
 
+CREATE TABLE instructor (
+    ID INT PRIMARY KEY,
+    NAME VARCHAR(50),
+    dept_name VARCHAR(50),
+    salary INT
+);

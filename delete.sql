@@ -1,0 +1,2 @@
+DELETE FROM student
+WHERE PRN = 25;
